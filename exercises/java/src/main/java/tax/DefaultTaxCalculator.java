@@ -13,9 +13,44 @@ public class DefaultTaxCalculator extends TaxCalculator {
     @Override
     int calculateTax(Vehicle vehicle) {
         Integer co2Emissions = vehicle.getCo2Emissions();
-if(vehicle.getFuelType().equals(ALTERNATIVE_FUEL)){return calculateAlternativeTax(co2Emissions);}
-else
-{    return calculatePetrolTax(co2Emissions);}
+
+        if(vehicle.getFuelType() == PETROL) {
+            return calculatePetrolTax(co2Emissions);
+        }
+        else if(vehicle.getFuelType() == DIESEL) {
+            return calculateDieselTax(co2Emissions);
+        }
+        else {
+            return calculateAlternativeTax(co2Emissions);
+        }
+    }
+
+    private int calculateDieselTax(Integer co2Emissions) {
+        if(co2Emissions == 0)
+            return 0;
+        else if(co2Emissions <= 50)
+            return 25;
+        else if(co2Emissions <= 75)
+            return 105;
+        else if(co2Emissions <= 90)
+            return 125;
+        else if(co2Emissions <= 100)
+            return 145;
+        else if(co2Emissions <= 110)
+            return 165;
+        else if(co2Emissions <= 130)
+            return 205;
+        else if(co2Emissions <= 150)
+            return 515;
+        else if(co2Emissions <= 170)
+            return 830;
+        else if(co2Emissions <= 190)
+            return 1240;
+        else if(co2Emissions <= 225)
+            return 1760;
+        else if(co2Emissions <= 255)
+            return 2070;
+        else return 2070;
     }
 
     private int calculateAlternativeTax(Integer co2Emissions) {
@@ -45,6 +80,7 @@ else
             return 1750;
         else return 2060;
     }
+
     private int calculatePetrolTax(Integer co2Emissions) {
         if(co2Emissions == 0)
             return 0;
