@@ -22,6 +22,7 @@ public class TaxCalculatorPetrolTest {
 
     @Test
     public void firstYearsTaxForPetrol_0_grams_co2() {
+
         Vehicle vehicle = new Vehicle(0, PETROL, FIRST_OF_JAN_2019, 20000);
         assertThat(taxCalculator.calculateTax(vehicle)).isEqualTo(0);
     }
