@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static tax.FuelType.ALTERNATIVE_FUEL;
 import static tax.FuelType.ELECTRIC;
 
-@Ignore
 public class TaxCalculatorAlternativeFuelTest {
 
     private static final LocalDate FIRST_OF_JAN_2019 = LocalDate.of(2019, JANUARY, 1);
