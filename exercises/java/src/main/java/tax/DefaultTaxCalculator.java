@@ -28,7 +28,7 @@ public class DefaultTaxCalculator extends TaxCalculator {
         }
 
         if (vehicle.getFuelType() == PETROL || vehicle.getFuelType() == RED2_COMPLIANT_DIESEL) {
-            return calculatePetrolTax(co2Emissions);
+            return calculatePetrolAndRDE2Tax(co2Emissions);
         } else if (vehicle.getFuelType() == DIESEL) {
             return calculateDieselTax(co2Emissions);
         } else {
@@ -98,32 +98,14 @@ public class DefaultTaxCalculator extends TaxCalculator {
         else return 2060;
     }
 
-    private int calculatePetrolTax(Integer co2Emissions) {
-        if (co2Emissions == 0)
-            return 0;
-        else if (co2Emissions >= 1 && co2Emissions <= 50)
-            return 10;
-        else if (co2Emissions >= 51 && co2Emissions <= 75)
-            return 25;
-        else if (co2Emissions >= 76 && co2Emissions <= 90)
-            return 110;
-        else if (co2Emissions >= 91 && co2Emissions <= 100)
-            return 130;
-        else if (co2Emissions >= 101 && co2Emissions <= 110)
-            return 150;
-        else if (co2Emissions >= 111 && co2Emissions <= 130)
-            return 170;
-        else if (co2Emissions >= 131 && co2Emissions <= 150)
-            return 210;
-        else if (co2Emissions >= 151 && co2Emissions <= 170)
-            return 530;
-        else if (co2Emissions >= 171 && co2Emissions <= 190)
-            return 855;
-        else if (co2Emissions >= 191 && co2Emissions <= 225)
-            return 1280;
-        else if (co2Emissions >= 226 && co2Emissions <= 255)
-            return 1815;
-        else return 2135;
+    private int calculatePetrolAndRDE2Tax(Integer co2Emissions) {
+        Map<Integer, Integer> petrolAndRDE2TaxBands = new PetrolAndRDE2TaxBands().getPetrolAndRDE2TaxBands();
 
+        for (Integer taxBandUpperLimit : petrolAndRDE2TaxBands.keySet()) {
+            if(co2Emissions <= taxBandUpperLimit) {
+                return petrolAndRDE2TaxBands.get(taxBandUpperLimit);
+            }
+        }
+        return -1;
     }
 }
