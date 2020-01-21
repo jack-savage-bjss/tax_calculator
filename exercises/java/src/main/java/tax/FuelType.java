@@ -3,6 +3,6 @@ package tax;
 enum FuelType {
     PETROL,
     DIESEL,
-    RED2COMPLIANTDIESEL,
+    RED2_COMPLIANT_DIESEL,
     ELECTRIC, ALTERNATIVE_FUEL
 }

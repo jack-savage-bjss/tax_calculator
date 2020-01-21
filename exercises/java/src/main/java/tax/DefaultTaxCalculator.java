@@ -27,7 +27,7 @@ public class DefaultTaxCalculator extends TaxCalculator {
             return taxAfterSecondPaymentForCarsUnder40k(fuelType);
         }
 
-        if (vehicle.getFuelType() == PETROL || vehicle.getFuelType() == RED2COMPLIANTDIESEL) {
+        if (vehicle.getFuelType() == PETROL || vehicle.getFuelType() == RED2_COMPLIANT_DIESEL) {
             return calculatePetrolTax(co2Emissions);
         } else if (vehicle.getFuelType() == DIESEL) {
             return calculateDieselTax(co2Emissions);
