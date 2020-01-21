@@ -18,7 +18,7 @@ public class TaxCalculatorAfterFirstYearTest {
 
     @Before
     public void setUp() {
-        taxCalculator = new DefaultTaxCalculator(true);
+        taxCalculator = new DefaultTaxCalculator(true, false);
     }
 
     @Test

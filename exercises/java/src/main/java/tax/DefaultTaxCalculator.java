@@ -12,7 +12,7 @@ public class DefaultTaxCalculator extends TaxCalculator {
     public DefaultTaxCalculator() {
     }
 
-    public DefaultTaxCalculator(boolean toggleCarsUnder40k) {
+    public DefaultTaxCalculator(boolean toggleCarsUnder40k, boolean isExpensiveCarTaxEnabled) {
         this.toggleCarsUnder40k = toggleCarsUnder40k;
     }
 
@@ -20,9 +20,6 @@ public class DefaultTaxCalculator extends TaxCalculator {
         super(year);
     }
 
-    public DefaultTaxCalculator(boolean isExpensiveCarTaxEnabled) {
-        this.isExpensiveCarTaxEnabled = isExpensiveCarTaxEnabled;
-    }
 
     @Override
     int calculateTax(Vehicle vehicle) {
