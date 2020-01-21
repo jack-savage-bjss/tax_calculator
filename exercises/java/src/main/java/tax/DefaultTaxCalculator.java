@@ -5,17 +5,12 @@ import java.time.LocalDate;
 import static tax.FuelType.*;
 
 public class DefaultTaxCalculator extends TaxCalculator {
-    boolean toggleCarsUnder40k;
 
-    boolean isExpensiveCarTaxEnabled;
 
     public DefaultTaxCalculator() {
     }
 
-    public DefaultTaxCalculator(boolean toggleCarsUnder40k, boolean isExpensiveCarTaxEnabled) {
-        this.toggleCarsUnder40k = toggleCarsUnder40k;
-        this.isExpensiveCarTaxEnabled = isExpensiveCarTaxEnabled;
-    }
+
 
     public DefaultTaxCalculator(int year) {
         super(year);
@@ -27,15 +22,14 @@ public class DefaultTaxCalculator extends TaxCalculator {
         Integer co2Emissions = vehicle.getCo2Emissions();
         tax.FuelType fuelType = vehicle.getFuelType();
 
-        if (isExpensiveCarTaxEnabled && vehicle.getListPrice() > 40000) {
+        if (vehicle.getListPrice() > 40000) {
             return calculateExpensiveCarTax(vehicle);
         }
 
-        if (toggleCarsUnder40k) {
             if (vehicle.getDateOfFirstRegistration().isBefore(LocalDate.now().minusYears(2))) {
                 return taxAfterSecondPaymentForCarsUnder40k(fuelType);
             }
-        }
+
 
         if (vehicle.getFuelType() == PETROL) {
             return calculatePetrolTax(co2Emissions);
