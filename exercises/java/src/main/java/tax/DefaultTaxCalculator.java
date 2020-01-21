@@ -65,26 +65,26 @@ public class DefaultTaxCalculator extends TaxCalculator {
         else if (co2Emissions <= 50)
             return 25;
         else if (co2Emissions <= 75)
-            return 105;
+            return 110;
         else if (co2Emissions <= 90)
-            return 125;
+            return 130;
         else if (co2Emissions <= 100)
-            return 145;
+            return 150;
         else if (co2Emissions <= 110)
-            return 165;
+            return 170;
         else if (co2Emissions <= 130)
-            return 205;
+            return 210;
         else if (co2Emissions <= 150)
-            return 515;
+            return 530;
         else if (co2Emissions <= 170)
-            return 830;
+            return 855;
         else if (co2Emissions <= 190)
-            return 1240;
+            return 1280;
         else if (co2Emissions <= 225)
-            return 1760;
+            return 1815;
         else if (co2Emissions <= 255)
-            return 2070;
-        else return 2070;
+            return 2135;
+        else return 2135;
     }
 
     private int calculateAlternativeTax(Integer co2Emissions) {
