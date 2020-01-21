@@ -23,7 +23,7 @@ public class DefaultTaxCalculator extends TaxCalculator {
         Integer co2Emissions = vehicle.getCo2Emissions();
         tax.FuelType fuelType = vehicle.getFuelType();
 
-        if (toggleCarsUnder40k == true) {
+        if (toggleCarsUnder40k) {
             if (vehicle.getDateOfFirstRegistration().isBefore(LocalDate.now().minusYears(2))) {
                 return taxAfterSecondPaymentForCarsUnder40k(fuelType);
             }
