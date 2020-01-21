@@ -14,6 +14,7 @@ public class DefaultTaxCalculator extends TaxCalculator {
 
     public DefaultTaxCalculator(boolean toggleCarsUnder40k, boolean isExpensiveCarTaxEnabled) {
         this.toggleCarsUnder40k = toggleCarsUnder40k;
+        this.isExpensiveCarTaxEnabled = isExpensiveCarTaxEnabled;
     }
 
     public DefaultTaxCalculator(int year) {
@@ -25,6 +26,10 @@ public class DefaultTaxCalculator extends TaxCalculator {
     int calculateTax(Vehicle vehicle) {
         Integer co2Emissions = vehicle.getCo2Emissions();
         tax.FuelType fuelType = vehicle.getFuelType();
+
+        if (isExpensiveCarTaxEnabled && vehicle.getListPrice() > 40000) {
+            return calculateExpensiveCarTax(vehicle);
+        }
 
         if (toggleCarsUnder40k) {
             if (vehicle.getDateOfFirstRegistration().isBefore(LocalDate.now().minusYears(2))) {
@@ -39,6 +44,18 @@ public class DefaultTaxCalculator extends TaxCalculator {
         } else {
             return calculateAlternativeTax(co2Emissions);
         }
+    }
+
+    private int calculateExpensiveCarTax(Vehicle vehicle) {
+        FuelType fuelType = vehicle.getFuelType();
+
+        if(fuelType.equals(PETROL) || fuelType.equals(DIESEL)) {
+            return 450;
+        }
+        else if (fuelType.equals(ELECTRIC)) {
+            return 310;
+        }
+        return 440;
     }
 
 
