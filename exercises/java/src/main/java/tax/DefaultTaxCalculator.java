@@ -3,6 +3,8 @@ import static tax.FuelType.*;
 
 public class DefaultTaxCalculator extends TaxCalculator {
 
+    boolean isExpensiveCarTaxEnabled;
+
     public DefaultTaxCalculator() {
     }
 
