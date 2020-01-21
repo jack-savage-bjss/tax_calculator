@@ -10,12 +10,9 @@ public class DefaultTaxCalculator extends TaxCalculator {
     public DefaultTaxCalculator() {
     }
 
-
-
     public DefaultTaxCalculator(int year) {
         super(year);
     }
-
 
     @Override
     int calculateTax(Vehicle vehicle) {
@@ -26,10 +23,9 @@ public class DefaultTaxCalculator extends TaxCalculator {
             return calculateExpensiveCarTax(vehicle);
         }
 
-            if (vehicle.getDateOfFirstRegistration().isBefore(LocalDate.now().minusYears(2))) {
-                return taxAfterSecondPaymentForCarsUnder40k(fuelType);
-            }
-
+        if (vehicle.getDateOfFirstRegistration().isBefore(LocalDate.now().minusYears(2))) {
+            return taxAfterSecondPaymentForCarsUnder40k(fuelType);
+        }
 
         if (vehicle.getFuelType() == PETROL) {
             return calculatePetrolTax(co2Emissions);
