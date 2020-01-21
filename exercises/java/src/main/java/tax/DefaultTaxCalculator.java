@@ -1,11 +1,11 @@
 package tax;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 import static tax.FuelType.*;
 
 public class DefaultTaxCalculator extends TaxCalculator {
-
 
     public DefaultTaxCalculator() {
     }
@@ -60,31 +60,14 @@ public class DefaultTaxCalculator extends TaxCalculator {
     }
 
     private int calculateDieselTax(Integer co2Emissions) {
-        if (co2Emissions == 0)
-            return 0;
-        else if (co2Emissions <= 50)
-            return 25;
-        else if (co2Emissions <= 75)
-            return 110;
-        else if (co2Emissions <= 90)
-            return 130;
-        else if (co2Emissions <= 100)
-            return 150;
-        else if (co2Emissions <= 110)
-            return 170;
-        else if (co2Emissions <= 130)
-            return 210;
-        else if (co2Emissions <= 150)
-            return 530;
-        else if (co2Emissions <= 170)
-            return 855;
-        else if (co2Emissions <= 190)
-            return 1280;
-        else if (co2Emissions <= 225)
-            return 1815;
-        else if (co2Emissions <= 255)
-            return 2135;
-        else return 2135;
+        Map<Integer, Integer> dieselTaxBands = new DieselTaxBands().getDieselTaxBands();
+
+        for (Integer taxBandUpperLimit : dieselTaxBands.keySet()) {
+            if(co2Emissions <= taxBandUpperLimit) {
+                return dieselTaxBands.get(taxBandUpperLimit);
+            }
+        }
+        return -1;
     }
 
     private int calculateAlternativeTax(Integer co2Emissions) {
