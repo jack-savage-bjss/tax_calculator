@@ -7,6 +7,8 @@ import static tax.FuelType.*;
 public class DefaultTaxCalculator extends TaxCalculator {
     boolean toggleCarsUnder40k;
 
+    boolean isExpensiveCarTaxEnabled;
+
     public DefaultTaxCalculator() {
     }
 
