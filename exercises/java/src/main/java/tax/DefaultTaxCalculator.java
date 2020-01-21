@@ -12,6 +12,10 @@ public class DefaultTaxCalculator extends TaxCalculator {
         super(year);
     }
 
+    public DefaultTaxCalculator(boolean isExpensiveCarTaxEnabled) {
+        this.isExpensiveCarTaxEnabled = isExpensiveCarTaxEnabled;
+    }
+
     @Override
     int calculateTax(Vehicle vehicle) {
         Integer co2Emissions = vehicle.getCo2Emissions();
